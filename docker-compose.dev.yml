@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:14
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: "${PG_PASSWORD}"
+    volumes:
+      - "./data:/var/lib/postgresql/data"
+
+  db-admin:
+    image: dpage/pgadmin4
+    restart: always
+    ports:
+      - "8080:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@todo-app.com
+      PGADMIN_DEFAULT_PASSWORD: password
